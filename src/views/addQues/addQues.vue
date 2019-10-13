@@ -12,12 +12,15 @@
                     <el-button type="primary"  @click="addCheckbox('duoxuan')">多选题</el-button>
                     <el-button type="primary"  @click="addTextarea('tiankong')">填空题</el-button>
                 </el-form-item>
+                <el-form-item>
+                    <questionList :questionList="quesList"></questionList>
+                </el-form-item>
        </el-form>
         <!--单选题弹框-->
         <el-dialog title="添加单选题" :visible.sync="radioVisible" width="650px">
             <el-form label-width="80px">
                 <el-form-item label="题目">
-                    <el-input v-model="addRadioForm.name"></el-input>
+                    <el-input v-model="addRadioForm.question"></el-input>
                 </el-form-item>
                 <el-form-item label="选项">
                     <div v-for="(item,index) in addRadioForm.options">
@@ -40,7 +43,7 @@
         <el-dialog title="添加多选题" :visible.sync="checkboxVisible" width="650px">
             <el-form label-width="80px">
                 <el-form-item label="题目">
-                    <el-input v-model="addCheckboxForm.name"></el-input>
+                    <el-input v-model="addCheckboxForm.question"></el-input>
                 </el-form-item>
                 <el-form-item label="选项">
                     <div v-for="(item,index) in addCheckboxForm.options">
@@ -63,7 +66,7 @@
         <el-dialog title="添加填空题" :visible.sync="textareaVisible" width="650px">
             <el-form label-width="80px">
                 <el-form-item label="题目">
-                    <el-input v-model="addTextareaForm.name"></el-input>
+                    <el-input v-model="addTextareaForm.question"></el-input>
                 </el-form-item>
                 <el-form-item label="选项">
                     <div v-for="(item,index) in addTextareaForm.options">
@@ -83,6 +86,7 @@
     </div>
 </template>
 <script>
+import questionList from '../../component/questionList/questionList'
 export default {
     name: "addQues",
     data(){
@@ -93,20 +97,26 @@ export default {
             quesList: {             // 问卷总题目
                 title:'',
                 instructions:'',
-                options:[]
+                data:[]
             },
             labelPosition:'right',
             addRadioForm:{      //单选题题目
+                question:'',
                 options:['选项1','选项2']
             },
             addCheckboxForm:{//多选题题目
+                question:'',
                 options:['选项1','选项2']
             },
             addTextareaForm:{   //填空题题目
+                question:'',
                 options:['填空内容']
             }
         }
     },
+ components:{
+   questionList
+ },
  methods:{
      addRadio:function (type) {      //打开添加单选题弹框
          this.radioVisible = true
@@ -138,8 +148,8 @@ export default {
         console.log(this.addCheckboxForm.options)
     },
     addRadioList:function (addRadioForm) {      // 添加单选题
-         this.addRadioForm.seq = this.quesList.options.length + 1 //题号
-        this.quesList.options.push(addRadioForm)
+         this.addRadioForm.seq = this.quesList.data.length + 1 //题号
+        this.quesList.data.push(addRadioForm)
         this.addRadioForm={
             options:['选项1','选项2']
         }
@@ -147,8 +157,8 @@ export default {
         console.log(this.quesList)
     },
     addCheckboxList:function (addCheckboxForm) {    //添加多选题
-        this.addCheckboxForm.seq = this.quesList.options.length + 1 //题号
-        this.quesList.options.push(addCheckboxForm)
+        this.addCheckboxForm.seq = this.quesList.data.length + 1 //题号
+        this.quesList.data.push(addCheckboxForm)
         this.addCheckboxForm={
             options:['选项1','选项2']
         }
@@ -156,8 +166,8 @@ export default {
         console.log(this.quesList)
     },
     addTextareaList:function(addTextareaForm){      //添加填空题
-        this.addTextareaForm.seq = this.quesList.options.length + 1 //题号
-        this.quesList.options.push(addTextareaForm)
+        this.addTextareaForm.seq = this.quesList.data.length + 1 //题号
+        this.quesList.data.push(addTextareaForm)
         this.addTextareaForm={
             options:['填空题']
         }

@@ -1,10 +1,10 @@
 <template>
 <div class="layout">
     <el-row type="flex">
-        <el-col :span="5">
+        <el-col :span="5" style=" overflow-y: hidden;">
             <h3 class="layout-header">问卷调查</h3>
             <el-menu
-                    default-active="1"  class="el-menu-vertical-demo" background-color="#545c64" ext-color="#fff"
+                 style="height: 100vh;"   default-active="1"  class="el-menu-vertical-demo" background-color="#545c64" ext-color="#fff"
                   active-text-color="#ffd04b" >
                 <router-link v-for="(item,index) in navList" :to="item.path" :key="index">
                     <el-menu-item :index="index+1">
@@ -14,7 +14,7 @@
                 </router-link>
             </el-menu>
         </el-col>
-        <el-col  class="layout-right" :span="18">
+        <el-col  class="layout-right" :span="18" >
             <router-view></router-view>
         </el-col>
     </el-row>
@@ -57,6 +57,7 @@
     position: relative;
     background: #f5f7f9;
     height: 100vh;
+    overflow-y: hidden;
 }
 .layout-header{
     color: #f5f7f9;
@@ -71,5 +72,6 @@
     flex:1;
     display: flex;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 </style>
