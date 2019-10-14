@@ -1,24 +1,4 @@
 <template>
-<<<<<<< HEAD
-<div class="layout">
-    <el-row type="flex">
-        <el-col :span="5" style=" overflow-y: hidden;">
-            <h3 class="layout-header">问卷调查</h3>
-            <el-menu
-                 style="height: 100vh;"   default-active="1"  class="el-menu-vertical-demo" background-color="#545c64" ext-color="#fff"
-                  active-text-color="#ffd04b" >
-                <router-link v-for="(item,index) in navList" :to="item.path" :key="index">
-                    <el-menu-item :index="index+1">
-                        <i :class="item.icon"></i>
-                        <span slot="title">{{item.title}}</span>
-                    </el-menu-item>
-                </router-link>
-            </el-menu>
-        </el-col>
-        <el-col  class="layout-right" :span="18" >
-            <router-view></router-view>
-        </el-col>
-=======
   <div class="layout">
     <el-row type="flex" class="lay-out-box">
       <el-col :span="5">
@@ -41,7 +21,6 @@
       <el-col class="layout-right" :span="18">
         <router-view></router-view>
       </el-col>
->>>>>>> c300b791ea52bced18d84e182bd5a2544b139793
     </el-row>
   </div>
 </template>
@@ -75,14 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
 
-.layout{
-    position: relative;
-    background: #f5f7f9;
-    height: 100vh;
-    overflow-y: hidden;
-=======
+
 .layout {
   position: relative;
   background: #f5f7f9;
@@ -93,7 +66,6 @@ export default {
 }
 .el-menu-vertical-demo {
   height: 100%;
->>>>>>> c300b791ea52bced18d84e182bd5a2544b139793
 }
 .layout-header {
   color: #f5f7f9;
@@ -101,23 +73,14 @@ export default {
   font-size: 24px;
   background-color: #545c64;
 }
-<<<<<<< HEAD
-.layout-right{
+
+.layout-right {
     background-color: #fff;
     margin: 0 15px;
     box-shadow: 0 0 5px #eee;
-    flex:1;
+    flex: 1;
     display: flex;
     box-sizing: border-box;
     overflow-y: auto;
-=======
-.layout-right {
-  background-color: #fff;
-  margin: 0 15px;
-  box-shadow: 0 0 5px #eee;
-  flex: 1;
-  display: flex;
-  box-sizing: border-box;
->>>>>>> c300b791ea52bced18d84e182bd5a2544b139793
 }
 </style>
