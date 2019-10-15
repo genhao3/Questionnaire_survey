@@ -73,7 +73,7 @@
                     <div v-for="(item,index) in addTextareaForm.options">
                         <el-row>
                             <el-col :span="24">
-                                <el-input  placeholder="请输入内容" type="textarea" :rows="5" v-model="addTextareaForm.options[index]" ></el-input>
+                                <el-input  placeholder="请输入内容" type="textarea" :rows="5"  ></el-input>
                             </el-col>
                         </el-row>
                     </div>
@@ -104,14 +104,20 @@ export default {
             labelPosition:'right',
             addRadioForm:{      //单选题题目
                 question:'',
+                oneAnswer:'',
+                checkboxAnswer:[],
                 options:['选项1','选项2']
             },
             addCheckboxForm:{//多选题题目
                 question:'',
+                oneAnswer:'',
+                checkboxAnswer:[],
                 options:['选项1','选项2']
             },
             addTextareaForm:{   //填空题题目
                 question:'',
+                oneAnswer:'',
+                checkboxAnswer:[],
                 options:['填空内容']
             }
         }
@@ -131,8 +137,8 @@ export default {
      addTextarea:function(type){    //打开添加填空题弹框
        this.textareaVisible = true
        this.addTextareaForm.type = type
-      this.addRadioForm.options.push("选项");
-      console.log(this.addRadioForm.options);
+      // this.addRadioForm.options.push("选项");
+      // console.log(this.addRadioForm.options);
     },
     delRadioItem: function(index) {
       //删除单选题选项
