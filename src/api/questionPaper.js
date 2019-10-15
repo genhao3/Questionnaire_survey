@@ -9,11 +9,12 @@ export default {
       data
     })
   },
-  // 获取用户信息
-  getUserInfo () {
+  // 获取未删除的问卷
+  queryAllPaper (params) {
     return request({
-      url: '/userinfo',
-      method: 'get'
+      url: '/queryAllPaper',
+      method: 'get',
+      params
     })
   }
 }
