@@ -14,8 +14,11 @@ module.exports = {
     hotOnly: false,
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8080',
-        changeOrigin: true
+        target: 'http://182.61.26.241:8081/api',
+        changeOrigin: true,
+        pathRewrite:{ //重写路径
+          '^/api':'/'
+      }
       }
     }
   },

@@ -7,7 +7,7 @@ const modeUrlObj = {
   },
   // 开发环境
   'development': {
-    baseURL: 'http://xxxx:9091/dev/',
+    baseURL: '/api',
     authBaseURL: ''
   },
   // 测试环境
