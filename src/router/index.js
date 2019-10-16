@@ -25,6 +25,11 @@ export const router = new Router({
                     path:'/myQuestionnaire',
                     name:'myQuestionnaire',
                     component:() => import('../views/myQuestionnaire/myQuestionnaire')
+                },
+                {
+                    path:'/showQues/:paperCode',
+                    name:'showQues',
+                    component:() => import('../views/showQues/showQues')
                 }
             ]
         }

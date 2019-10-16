@@ -19,7 +19,9 @@
         </el-menu>
       </el-col>
       <el-col class="layout-right" :span="18">
+        <keep-alive>
         <router-view></router-view>
+        </keep-alive>
       </el-col>
     </el-row>
   </div>

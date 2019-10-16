@@ -24,7 +24,7 @@
                     <el-input v-model="addRadioForm.question"></el-input>
                 </el-form-item>
                 <el-form-item label="选项">
-                    <div v-for="(item,index) in addRadioForm.options">
+                    <div v-for="(item,index) in addRadioForm.options" :key="index">
                         <el-row>
                             <el-col :span="18">
                                 <el-input  placeholder="请输入内容" v-model="addRadioForm.options[index]" ></el-input>
@@ -47,7 +47,7 @@
                     <el-input v-model="addCheckboxForm.question"></el-input>
                 </el-form-item>
                 <el-form-item label="选项">
-                    <div v-for="(item,index) in addCheckboxForm.options">
+                    <div v-for="(item,index) in addCheckboxForm.options" :key="index">
                         <el-row>
                             <el-col :span="18">
                                 <el-input  placeholder="请输入内容" v-model="addCheckboxForm.options[index]" ></el-input>
@@ -70,10 +70,10 @@
                     <el-input v-model="addTextareaForm.question"></el-input>
                 </el-form-item>
                 <el-form-item label="选项">
-                    <div v-for="(item,index) in addTextareaForm.options">
+                    <div v-for="(item,index) in addTextareaForm.options" :key="index">
                         <el-row>
                             <el-col :span="24">
-                                <el-input  placeholder="请输入内容" type="textarea" :rows="5"  ></el-input>
+                                <el-input  placeholder="请输入内容" type="textarea" :rows="5" v-model="addTextareaForm.options[index]" ></el-input>
                             </el-col>
                         </el-row>
                     </div>
@@ -88,7 +88,7 @@
 
 </template>
 <script>
-import questionList from '../../component/questionList/questionList'
+import questionList from '@/component/questionList/questionList'
 export default {
     name: "addQues",
     data(){
@@ -145,6 +145,12 @@ export default {
       if (this.addRadioForm.options.length === 1) return false;
       this.addRadioForm.options.splice(index, 1);
       console.log(this.addRadioForm.options);
+    },
+    delCheckboxItem: function(index) {
+      //删除多选题选项
+      if (this.addCheckboxForm.options.length === 1) return false;
+      this.addCheckboxForm.options.splice(index, 1);
+      console.log(this.addCheckboxForm.options);
     },
     addCheckboxItem: function(index) {
       //添加多选题选项
