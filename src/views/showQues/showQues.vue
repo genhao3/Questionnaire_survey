@@ -1,24 +1,21 @@
 
 <template>
-    <questionTable tableType="trashQues"></questionTable>
+  <div>
+      asd
+  </div>
 </template>
 
 <script>
-import questionTable from '@/component/questionTable/questionTable'
+import questionList from "@/component/questionList/questionList";
 export default {
   data () {
     return {
     };
   },
-
   components: {
-    questionTable
+      questionList
   },
-
   computed: {},
-
-
-
   methods: {}
 }
 

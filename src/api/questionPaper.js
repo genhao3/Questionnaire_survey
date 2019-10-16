@@ -1,13 +1,15 @@
 import request from '@/utils/request'
-import axios from 'axios'
+
 import qs from 'qs'
 export default {
-  // 登录
-  login (data) {
+  // 删除单个问卷
+  deletePaper (paperCode) {
     return request({
-      url: '/login',
-      method: 'post',
-      data
+      url: '/deletePaper',
+      method: 'delete',
+      params: {
+        paperCode
+      }
     })
   },
   // 获取未删除的问卷
@@ -18,6 +20,7 @@ export default {
       params
     })
   },
+
   addPaper(params){
       return request({
           url: '/addPaper',
@@ -27,5 +30,14 @@ export default {
           },
           data:params
       })
+  },
+  // 获取删除的问卷
+  queryAllDeletePaper (params) {
+    return request({
+      url: '/queryAllDeletedPaper',
+      method: 'get',
+      params
+    })
   }
+
 }

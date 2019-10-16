@@ -12,6 +12,7 @@ module.exports = {
     port: 8000,
     https: false,
     hotOnly: false,
+    open:true,
     proxy: {
       '/api': {
         target: 'http://182.61.26.241:8081/api',

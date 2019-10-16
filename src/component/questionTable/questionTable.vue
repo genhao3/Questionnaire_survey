@@ -7,32 +7,42 @@
         <el-tag :type="renderStatusTag(scope.row.status)" disable-transitions>{{scope.row.status | changeStatusTag }}</el-tag>
       </template>
     </el-table-column>
-    <el-table-column label="操作">
-      <template slot-scope="scope">
-        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">查看</el-button>
-        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-      </template>
-    </el-table-column>
+    <tableBtn :btnType="tableType"></tableBtn>
   </el-table>
-    <questionTable tableType="myQues"></questionTable>
-
 </template>
 
 <script>
-import questionTable from '../../component/questionTable/questionTable'
-import allPaperObj from "../../api/questionPaper";
+import ajaxAllPaperObj from "@/api/questionPaper";
+import tableBtn from "@/component/questionTable/tableBtn";
 export default {
-  data () {
+  name: "myQuestionnaire",
+  components: {
+      tableBtn
+  },
+  props: {
+      tableType:String
+  },
+  data() {
     return {
-        allPaper:[]
+      allPaper: [
+      ]
     };
   },
-
   methods: {
     getAllPaper() {
       //获取当前未删除的问卷
-      allPaperObj.queryAllPaper({ pageNo: "1", pageSize: "2"})
+      ajaxAllPaperObj.queryAllPaper({ pageNo: "1", pageSize: "10" })
+        .then(result => {
+          console.log(result);
+          this.allPaper = result.data.results;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+        getAllDeletePaper() {
+      //获取当前删除的问卷
+      ajaxAllPaperObj.queryAllDeletePaper({ pageNo: "1", pageSize: "10" })
         .then(result => {
           console.log(result);
           this.allPaper = result.data.results;
@@ -58,9 +68,7 @@ export default {
       }
       return result;
     },
-    handleEdit(index,row) {
-        console.log(index,row);
-    }
+
   },
   filters: {
    changeStatusTag: function(val) {
@@ -79,15 +87,19 @@ export default {
           break;
       }
       return result;
-    },
-    },
-    components: {
-        questionTable
-    },
+    }
+  },
+  mounted:function() {
+      if(this.tableType === 'myQues') {
+        this.getAllPaper();
+      } else {
+          this.getAllDeletePaper()
+      }
+    
+  },
 
-    computed: {},
-}
-
+};
 </script>
-<style lang='scss' scoped>
+
+<style scoped lang="scss">
 </style>
