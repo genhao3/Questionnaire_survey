@@ -1,15 +1,27 @@
+
 <template>
-    <div>
-        回收站
-    </div>
+    <questionTable tableType="trashQues"></questionTable>
 </template>
 
 <script>
-    export default {
-        name: "trashBin"
-    }
+import questionTable from '@/component/questionTable/questionTable'
+export default {
+  data () {
+    return {
+    };
+  },
+
+  components: {
+    questionTable
+  },
+
+  computed: {},
+
+
+
+  methods: {}
+}
+
 </script>
-
-<style scoped>
-
+<style lang='scss' scoped>
 </style>
