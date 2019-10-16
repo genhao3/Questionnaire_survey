@@ -12,6 +12,7 @@
                     <el-button type="primary"  @click="addRadio('danxuan')">单选题</el-button>
                     <el-button type="primary"  @click="addCheckbox('duoxuan')">多选题</el-button>
                     <el-button type="primary"  @click="addTextarea('tiankong')">填空题</el-button>
+                    <el-button type="primary"  @click="addPaper()">提交</el-button>
                 </el-form-item>
                 <el-form-item>
                     <questionList :questionList="quesList"></questionList>
@@ -89,6 +90,7 @@
 </template>
 <script>
 import questionList from '../../component/questionList/questionList'
+import allPaperObj from "@/api/questionPaper";
 export default {
     name: "addQues",
     data(){
@@ -184,7 +186,15 @@ export default {
       this.radioVisible = false;
       this.textareaVisible = false;
       this.checkboxVisible = false;
-    }
+    },
+     addPaper:function () {
+         allPaperObj.addPaper(this.quesList)
+             .then(result => console.log(result))
+             .catch(err => {
+                 console.log(err);
+             })
+
+     }
   }
 };
 </script>

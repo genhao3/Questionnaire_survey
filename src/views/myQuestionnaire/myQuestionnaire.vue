@@ -9,7 +9,7 @@
     </el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">查看</el-button>
+        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">查看</el-button>
         <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
         <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
       </template>
@@ -30,7 +30,7 @@ export default {
   methods: {
     getAllPaper() {
       //获取当前未删除的问卷
-      allPaperObj.queryAllPaper({ pageNo: "1", pageSize: "2" })
+      allPaperObj.queryAllPaper({ pageNo: "1", pageSize: "2"})
         .then(result => {
           console.log(result);
           this.allPaper = result.data.results;
