@@ -38,7 +38,7 @@ export default {
     handleViewAnswer(index, row) {
       //点击查看答卷
       console.log(index, row);
-      this.$router.push({name:"showQues",params: {paperCode:row.code}})
+      this.$router.push({name:"showQuesAnswer",params: {paperCode:row.code}})
     },
     handleDelete(index, row) {
       //点击删除
@@ -55,7 +55,7 @@ export default {
         console.log(index,row);
     },
         handleEdit(index,row) {//点击编辑
-        console.log(index,row);
+        this.$router.push({name:"editQues",params: {paperCode:row.code}})
     },
   }
 };

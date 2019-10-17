@@ -11,8 +11,11 @@
                     <p>{{index+1}}单选题:{{item.question}}</p>
                     <el-radio-group v-model="item.oneAnswer" @change="modelChange($event,item.seq)" >
                     <el-radio style="display: block;margin-bottom: 10px;" v-for="(radio,index) in item.options" :key="index" :label="radio" >
+                        
                     </el-radio>
+                    
                     </el-radio-group>
+                    
                 </el-form-item>
                 <!--多选题-->
                 <el-form-item v-if="item.type ==='duoxuan'" style="background-color: #eee">
@@ -42,8 +45,9 @@
         data(){
            return{
                form:{
-                    data:[]
-               }
+                    data:[],
+                    
+               },
            }
         },
         props:['questionList'],
