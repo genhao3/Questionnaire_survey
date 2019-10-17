@@ -1,12 +1,12 @@
 <!--  -->
 <template>
-    <questionOptions operation="create"></questionOptions>
+    <questionOptions operation="edit"></questionOptions>
 </template>
 
 <script>
 import questionOptions from "@/component/questionOptions/questionOptions";
 export default {
-    name:'addQues',
+    name:'editQues',
   data () {
     return {
     };

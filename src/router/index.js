@@ -16,6 +16,11 @@ export const router = new Router({
                     component:() => import('../views/addQues/addQues')
                 },
                 {
+                    path:'/editQues/:paperCode',
+                    name:'editQues',
+                    component:() => import('../views/editQues/editQues')
+                },
+                {
                     path:'/trashBin',
                     name:'trashBin',
                     component:() => import('../views/trashBin/trashBin')
@@ -29,7 +34,13 @@ export const router = new Router({
                     path:'/showQues/:paperCode',
                     name:'showQues',
                     component:() => import('../views/showQues/showQues')
-                }
+                },
+                {
+                    path:'/showQuesAnswer/:paperCode',
+                    name:'showQuesAnswer',
+                    component:() => import('../views/showQuesAnswer/showQuesAnswer')
+                },
+                
             ]
         }
     ]
