@@ -14,7 +14,7 @@
                     <el-button type="primary"  @click="addPaper()">提交</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <questionList :questionList="quesList"></questionList>
+                    <questionList :questionList="quesList" :isCreate = "true"></questionList>
                 </el-form-item>
        </el-form>
         <!--单选题弹框-->
@@ -90,7 +90,7 @@
 <script>
 
 import questionList from '../../component/questionList/questionList'
-import allPaperObj from "@/api/questionPaper";
+import allPaperObj from "../../api/questionPaper";
 
 
 export default {
