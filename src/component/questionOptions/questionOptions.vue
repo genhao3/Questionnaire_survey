@@ -168,6 +168,10 @@ export default {
        this.textareaVisible = true
        this.addTextareaForm.type = type
     },
+    addRadioItem: function(index) {
+      //添加多选题选项
+      this.addRadioForm.options.push("选项");
+    },
     delRadioItem: function(index) {
       //删除单选题选项
       if (this.addRadioForm.options.length === 1) return false;
@@ -215,7 +219,14 @@ export default {
     },
      addPaper () {
           allPaperObj.addPaper(this.getQuesAllParams())
-             .then(result => console.log(result))
+             .then(result => {
+                 console.log(result)
+                 this.$notify({
+                    title: '成功',
+                    message: '创建问卷成功',
+                    type: 'success'
+                    });
+                 })
              .catch(err => {
                  console.log(err);
              }) 

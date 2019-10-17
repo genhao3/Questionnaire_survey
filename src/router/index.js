@@ -36,7 +36,7 @@ export const router = new Router({
                     component:() => import('../views/showQues/showQues')
                 },
                 {
-                    path:'/showQuesAnswer/:paperCode',
+                    path:'/showQuesAnswer/:paperCode/:title',
                     name:'showQuesAnswer',
                     component:() => import('../views/showQuesAnswer/showQuesAnswer')
                 },

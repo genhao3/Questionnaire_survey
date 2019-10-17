@@ -2,12 +2,12 @@
   <el-table :data="allPaper" border style="width: 100%">
     <el-table-column prop="id" label="ID" width="180"></el-table-column>
     <el-table-column prop="name" label="问卷" width="180"></el-table-column>
-    <el-table-column prop="status" label="状态">
+    <el-table-column prop="status" label="状态" width="100">
       <template slot-scope="scope">
         <el-tag :type="renderStatusTag(scope.row.status)" disable-transitions>{{scope.row.status | changeStatusTag }}</el-tag>
       </template>
     </el-table-column>
-    <tableBtn :btnType="tableType"></tableBtn>
+    <tableBtn :btnType="tableType" @updatePaperTable="changeAllPaper" ></tableBtn>
   </el-table>
 </template>
 
@@ -29,12 +29,16 @@ export default {
     };
   },
   methods: {
+    changeAllPaper(paper) {
+      //更新表格
+      this.allPaper = paper
+    },
     getAllPaper() {
       //获取当前未删除的问卷
       ajaxAllPaperObj.queryAllPaper({ pageNo: "1", pageSize: "10" })
         .then(result => {
           console.log(result);
-          this.allPaper = result.data.results;
+          this.changeAllPaper(result.data.results)
         })
         .catch(err => {
           console.log(err);

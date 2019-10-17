@@ -8,5 +8,12 @@ export default {
             method: 'get',
             params
           })
+    },
+    postAddAnswer(data) {
+        return request({
+            url: '/addAnswer',
+            method: 'post',
+            data
+          })
     }
 }
