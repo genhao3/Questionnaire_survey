@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-import qs from 'qs'
+
 export default {
   // 删除单个问卷
   deletePaper (paperCode) {
@@ -20,7 +20,7 @@ export default {
       params
     })
   },
-
+  //新增问卷
   addPaper(params){
       return request({
           url: '/addPaper',
@@ -35,6 +35,13 @@ export default {
       method: 'get',
       params
     })
+  },
+  //查找具体一份问卷
+  querySinglePaper(params) {
+    return request({
+      url: '/querySinglePaper',
+      method: 'get',
+      params
+    })
   }
-
 }

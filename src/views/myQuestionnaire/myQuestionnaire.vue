@@ -1,10 +1,14 @@
 <template>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e437b751a164807341ed466b941e8346f39b9c25
     <questionTable tableType="myQues"></questionTable>
 </template>
 
 <script>
-import questionTable from '../../component/questionTable/questionTable'
-import allPaperObj from "../../api/questionPaper";
+import questionTable from '@/component/questionTable/questionTable'
+import allPaperObj from "@/api/questionPaper";
 export default {
   data () {
     return {

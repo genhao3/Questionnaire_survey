@@ -15,7 +15,7 @@
 import ajaxAllPaperObj from "../../api/questionPaper";
 import tableBtn from "../../component/questionTable/tableBtn";
 export default {
-  name: "myQuestionnaire",
+  name: "questionTable",
   components: {
       tableBtn
   },
