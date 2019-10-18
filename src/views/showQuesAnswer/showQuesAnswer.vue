@@ -39,13 +39,9 @@ export default {
         dialogTableVisible:false//控制单个用户选项弹框
     };
   },
-
   components: {},
-
   computed: {},
-
   methods: {
-      
       getPaperAnswer(params) {
         ajaxPaperAnswerObj.queryPaperAnswer(params).then((result) => {
                 console.log(result)

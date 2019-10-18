@@ -25,9 +25,6 @@ export default {
       return request({
           url: '/addPaper',
           method: 'post',
-          headers:{
-              'Content-Type':'application/json'
-          },
           data:params
       })
   },

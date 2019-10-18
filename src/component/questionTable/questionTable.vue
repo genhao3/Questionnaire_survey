@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import ajaxAllPaperObj from "@/api/questionPaper";
-import tableBtn from "@/component/questionTable/tableBtn";
+import ajaxAllPaperObj from "../../api/questionPaper";
+import tableBtn from "../../component/questionTable/tableBtn";
 export default {
   name: "questionTable",
   components: {
@@ -99,7 +99,7 @@ export default {
       } else {
           this.getAllDeletePaper()
       }
-    
+
   },
 
 };

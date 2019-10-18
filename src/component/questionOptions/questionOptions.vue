@@ -22,7 +22,7 @@
                     <el-button type="primary"  @click="addPaper">提交</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <questionList :questionList="quesList"></questionList>
+                    <questionList :questionList="quesList" :isCreate="isCreate"></questionList>
                 </el-form-item>
        </el-form>
         <!--单选题弹框-->
@@ -97,14 +97,15 @@
 </template>
 <script>
 
-import questionList from '@/component/questionList/questionList'
-import allPaperObj from "@/api/questionPaper";
+import questionList from '../../component/questionList/questionList'
+import allPaperObj from "../../api/questionPaper";
 
 
 export default {
     name: "addQues",
     props: {
-        operation:String
+            operation: {type:String},
+            isCreate:{type:Boolean}
     },
     data(){
         return{
@@ -228,6 +229,11 @@ export default {
                     message: '创建问卷成功',
                     type: 'success'
                     });
+                this.quesList= {             // 清空下缓存问卷总题目
+                   title:'',
+                   instructions:'',
+                   data:[]
+                      }
                  })
              .catch(err => {
                  console.log(err);
@@ -244,6 +250,7 @@ export default {
                  })
              .catch(err => {
                  console.log(err);
+
                  this.$notify({
                     title: '错误',
                     message: '修改问卷错误',
@@ -251,6 +258,10 @@ export default {
                     });
              }) 
           }
+
+             })
+       
+
      },
      getSinglePaper(params) {
          allPaperObj.querySinglePaper(params).then((result) => {
@@ -287,7 +298,7 @@ export default {
      }
   },
   created() {
-      if(this.operation === 'edit') {  
+      if(this.operation === 'edit') {
           this.getSinglePaper({paperCode:this.$route.params.paperCode})
       }
   },

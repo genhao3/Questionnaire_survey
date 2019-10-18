@@ -4,7 +4,6 @@
       <h1>问卷查看</h1>
        <questionList :questionList="questionData"></questionList>
       <el-button type="primary" plain @click="addAnswer">提交</el-button>
-
   </div>
 </template>
 

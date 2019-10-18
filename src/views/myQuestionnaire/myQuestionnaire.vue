@@ -1,26 +1,34 @@
 <template>
-
-    <questionTable tableType="myQues"></questionTable>
-
+    <div style="width:100%;position: relative;">
+        <questionTable tableType="myQues"></questionTable>
+        <pagination :total="total" :page.sync="pageQuery.pageNo" @getNewQues="getNewQues"></pagination>
+    </div>
 </template>
 
 <script>
-import questionTable from '@/component/questionTable/questionTable'
-import allPaperObj from "@/api/questionPaper";
+import questionTable from '../../component/questionTable/questionTable'
+import allPaperObj from "../../api/questionPaper";
+import pagination from '../../component/pagination/pagination'
 export default {
   data () {
     return {
-        allPaper:[]
+        allPaper:[],
+        total:1,
+        pageQuery:{
+            pageNo: 1,
+            pageSize: 20
+        }
     };
   },
 
   methods: {
     getAllPaper() {
       //获取当前未删除的问卷
-      allPaperObj.queryAllPaper({ pageNo: "1", pageSize: "2"})
+      allPaperObj.queryAllPaper(this.pageQuery)
         .then(result => {
           console.log(result);
           this.allPaper = result.data.results;
+          this.total = result.data.total
         })
         .catch(err => {
           console.log(err);
@@ -45,6 +53,10 @@ export default {
     },
     handleEdit(index,row) {
         console.log(index,row);
+    },
+    getNewQues:function () {
+
+        this.getAllPaper()
     }
   },
   filters: {
@@ -65,11 +77,12 @@ export default {
       }
       return result;
     },
+
     },
     components: {
-        questionTable
+        questionTable,
+        pagination
     },
-
     computed: {},
 }
 

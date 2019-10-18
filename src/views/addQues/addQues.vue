@@ -1,23 +1,20 @@
-<!--  -->
 <template>
-    <questionOptions operation="create"></questionOptions>
+    <questionOptions operation="create" :isCreate="true"></questionOptions>
 </template>
 
 <script>
-import questionOptions from "@/component/questionOptions/questionOptions";
+import questionOptions from "../../component/questionOptions/questionOptions";
+
 export default {
     name:'addQues',
   data () {
     return {
     };
   },
-
   components: {
-      questionOptions
+      questionOptions,
   },
-
   computed: {},
-
   methods: {}
 }
 
