@@ -31,6 +31,14 @@ export default {
           data:params
       })
   },
+  //修改问卷
+  updatePaper(params){
+    return request({
+        url: '/updatePaper',
+        method: 'put',
+        data:params
+    })
+},
   // 获取删除的问卷
   queryAllDeletePaper (params) {
     return request({

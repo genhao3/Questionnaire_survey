@@ -65,7 +65,7 @@ export default {
         console.log(index,row);
     },
         handleEdit(index,row) {//点击编辑
-        this.$router.push({name:"editQues",params: {paperCode:row.code}})
+        this.$router.push({name:"editQues",params: {paperCode:row.code,id:row.id}})
     },
   }
 };

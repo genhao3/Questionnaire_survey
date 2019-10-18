@@ -1,8 +1,7 @@
 <!--  -->
 <template>
-  <div>
+  <div style="width:100%">
       <h1>查看{{title}}问卷的答卷</h1>
-      <p>{{ansTable}}</p>
     
   <el-table :data="ansTable" border style="width: 100%">
     <el-table-column prop="id" label="ID" width="50"></el-table-column>
@@ -18,7 +17,7 @@
     </el-table-column>
   </el-table>
         <el-dialog title="答卷详情" :visible.sync="dialogTableVisible">
-          
+            <p v-for="(item, index) in answerDetail" :key="index">第{{index+1}}题 --- {{item.answers}}</p>
         </el-dialog>
   </div>
 </template>
@@ -36,6 +35,7 @@ export default {
         },
         ansTable:[],
         title:'',
+        answerDetail:[123,456],//答卷详情
         dialogTableVisible:false//控制单个用户选项弹框
     };
   },
@@ -55,7 +55,8 @@ export default {
             });
       },
       handleView(index,row) {
-        console.log(index,row);
+        this.dialogTableVisible = true
+        this.answerDetail = JSON.parse(row.ansJson).data
       }
   },
   created() {

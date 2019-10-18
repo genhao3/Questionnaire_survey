@@ -16,7 +16,7 @@ export const router = new Router({
                     component:() => import('../views/addQues/addQues')
                 },
                 {
-                    path:'/editQues/:paperCode',
+                    path:'/editQues/:paperCode/:id',
                     name:'editQues',
                     component:() => import('../views/editQues/editQues')
                 },

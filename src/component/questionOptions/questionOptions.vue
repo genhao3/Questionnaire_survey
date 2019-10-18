@@ -1,5 +1,6 @@
 <template>
     <div class="quesContainer">
+        <h1>{{operation === 'edit' ? '修改' : '创建'}}问卷</h1>
        <el-form :label-position="labelPosition" label-width="80px" >
                <el-form-item label="问卷标题" class="quesTitle" >
                    <el-input v-model="quesList.title" placeholder="请输入标题" ></el-input>
@@ -218,7 +219,8 @@ export default {
       this.checkboxVisible = false;
     },
      addPaper () {
-          allPaperObj.addPaper(this.getQuesAllParams())
+          if(this.operation === 'create') {
+              allPaperObj.addPaper()
              .then(result => {
                  console.log(result)
                  this.$notify({
@@ -230,6 +232,25 @@ export default {
              .catch(err => {
                  console.log(err);
              }) 
+          } else {
+              console.log(this.getQuesAllParams());
+               allPaperObj.updatePaper(this.getQuesAllParams())
+             .then(result => {
+                 this.$notify({
+                    title: '成功',
+                    message: '修改问卷成功',
+                    type: 'success'
+                    });
+                 })
+             .catch(err => {
+                 console.log(err);
+                 this.$notify({
+                    title: '错误',
+                    message: '修改问卷错误',
+                    type: 'error'
+                    });
+             }) 
+          }
      },
      getSinglePaper(params) {
          allPaperObj.querySinglePaper(params).then((result) => {
@@ -258,6 +279,10 @@ export default {
      getQuesAllParams() {
         this.quesObj.pageJsonDto = this.quesList
         this.quesObj.questionJsonDto = this.getQuesJson()
+        if (this.operation === "edit") {
+            this.quesObj.code = this.$route.params.paperCode
+            this.quesObj.id = this.$route.params.id
+        }
         return this.quesObj
      }
   },
