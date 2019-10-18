@@ -2,7 +2,7 @@
 <template>
   <div style="width:100%">
       <h1>查看{{title}}问卷的答卷</h1>
-    
+
   <el-table :data="ansTable" border style="width: 100%">
     <el-table-column prop="id" label="ID" width="50"></el-table-column>
     <el-table-column prop="ipAddr" label="用户IP" width="180"></el-table-column>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import ajaxPaperAnswerObj from '@/api/paperAnswer'
+import ajaxPaperAnswerObj from '../../api/paperAnswer'
 export default {
   name:'showQuesAnswer',
   data () {

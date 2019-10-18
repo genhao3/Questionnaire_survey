@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import questionTable from '@/component/questionTable/questionTable'
+import questionTable from '../../component/questionTable/questionTable'
 import pagination from '../../component/pagination/pagination'
 export default {
   data () {

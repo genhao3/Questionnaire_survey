@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import questionOptions from "@/component/questionOptions/questionOptions";
+import questionOptions from "../../component/questionOptions/questionOptions";
 export default {
     name:'editQues',
   data () {

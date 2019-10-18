@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import questionList from "@/component/questionList/questionList";
-import ajaxAllPaperObj from "@/api/questionPaper";
-import ajaxPaperAnswerObj from "@/api/paperAnswer";
+import questionList from "../../component/questionList/questionList";
+import ajaxAllPaperObj from "../../api/questionPaper";
+import ajaxPaperAnswerObj from "./../../api/paperAnswer";
 export default {
   name:"showQues",
   data () {
@@ -29,7 +29,7 @@ export default {
       for (let i =0;i < questionData.length; i++) {
         const obj = {}
         if(questionData[i].type === 'danxuan' || questionData[i].type === 'tiankong') {
-          obj.answers = questionData[i].oneAnswer   
+          obj.answers = questionData[i].oneAnswer
         } else {
           obj.answers = questionData[i].checkboxAnswer.join(',')
         }
@@ -60,7 +60,7 @@ export default {
       }).catch((err) => {
         console.log(err);
       });
-      
+
     },
     getSinglePaper(params) {
         ajaxAllPaperObj.querySinglePaper(params).then((result) => {

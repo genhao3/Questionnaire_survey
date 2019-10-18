@@ -237,7 +237,7 @@ export default {
                  })
              .catch(err => {
                  console.log(err);
-             }) 
+             })
           } else {
               console.log(this.getQuesAllParams());
                allPaperObj.updatePaper(this.getQuesAllParams())
@@ -256,13 +256,9 @@ export default {
                     message: '修改问卷错误',
                     type: 'error'
                     });
-             }) 
-          }
-
              })
-       
-
-     },
+          }
+            },
      getSinglePaper(params) {
          allPaperObj.querySinglePaper(params).then((result) => {
              const pageJson = JSON.parse(result.data.pageJson)
@@ -288,20 +284,22 @@ export default {
          return data
      },
      getQuesAllParams() {
-        this.quesObj.pageJsonDto = this.quesList
-        this.quesObj.questionJsonDto = this.getQuesJson()
-        if (this.operation === "edit") {
-            this.quesObj.code = this.$route.params.paperCode
-            this.quesObj.id = this.$route.params.id
-        }
-        return this.quesObj
+         this.quesObj.pageJsonDto = this.quesList
+         this.quesObj.questionJsonDto = this.getQuesJson()
+         if (this.operation === "edit") {
+             this.quesObj.code = this.$route.params.paperCode
+             this.quesObj.id = this.$route.params.id
+         }
+         return this.quesObj
      }
-  },
-  created() {
-      if(this.operation === 'edit') {
-          this.getSinglePaper({paperCode:this.$route.params.paperCode})
-      }
-  },
+     },
+
+
+    created() {
+        if(this.operation === 'edit') {
+            this.getSinglePaper({paperCode:this.$route.params.paperCode})
+           }
+    }
 };
 </script>
 
