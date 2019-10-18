@@ -1,5 +1,6 @@
 <template>
     <div class="quesContainer">
+        <h1>{{operation === 'edit' ? '修改' : '创建'}}问卷</h1>
        <el-form :label-position="labelPosition" label-width="80px" >
                <el-form-item label="问卷标题" class="quesTitle" >
                    <el-input v-model="quesList.title" placeholder="请输入标题" ></el-input>
@@ -169,10 +170,10 @@ export default {
        this.textareaVisible = true
        this.addTextareaForm.type = type
     },
-     addRadioItem: function(index) {
-         //添加多选题选项
-         this.addRadioForm.options.push("选项");
-     },
+    addRadioItem: function(index) {
+      //添加多选题选项
+      this.addRadioForm.options.push("选项");
+    },
     delRadioItem: function(index) {
       //删除单选题选项
       if (this.addRadioForm.options.length === 1) return false;
@@ -219,16 +220,48 @@ export default {
       this.checkboxVisible = false;
     },
      addPaper () {
-          allPaperObj.addPaper(this.getQuesAllParams())
-             .then(result => console.log(result))
+          if(this.operation === 'create') {
+              allPaperObj.addPaper()
+             .then(result => {
+                 console.log(result)
+                 this.$notify({
+                    title: '成功',
+                    message: '创建问卷成功',
+                    type: 'success'
+                    });
+                this.quesList= {             // 清空下缓存问卷总题目
+                   title:'',
+                   instructions:'',
+                   data:[]
+                      }
+                 })
              .catch(err => {
                  console.log(err);
+             }) 
+          } else {
+              console.log(this.getQuesAllParams());
+               allPaperObj.updatePaper(this.getQuesAllParams())
+             .then(result => {
+                 this.$notify({
+                    title: '成功',
+                    message: '修改问卷成功',
+                    type: 'success'
+                    });
+                 })
+             .catch(err => {
+                 console.log(err);
+
+                 this.$notify({
+                    title: '错误',
+                    message: '修改问卷错误',
+                    type: 'error'
+                    });
+             }) 
+          }
+
              })
-         this.quesList= {             // 清空下缓存问卷总题目
-                 title:'',
-                 instructions:'',
-                 data:[]
-         }
+       
+
      },
      getSinglePaper(params) {
          allPaperObj.querySinglePaper(params).then((result) => {
@@ -257,6 +290,10 @@ export default {
      getQuesAllParams() {
         this.quesObj.pageJsonDto = this.quesList
         this.quesObj.questionJsonDto = this.getQuesJson()
+        if (this.operation === "edit") {
+            this.quesObj.code = this.$route.params.paperCode
+            this.quesObj.id = this.$route.params.id
+        }
         return this.quesObj
      }
   },

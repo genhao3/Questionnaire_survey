@@ -8,5 +8,14 @@ export default {
             method: 'get',
             params
           })
-    }
+    },
+    //新增答卷
+    postAddAnswer(data) {
+        return request({
+            url: '/addAnswer',
+            method: 'post',
+            data
+          })
+    },
+    
 }
