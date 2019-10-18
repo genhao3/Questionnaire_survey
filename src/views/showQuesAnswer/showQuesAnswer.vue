@@ -18,18 +18,14 @@ export default {
         },
     };
   },
-
   components: {},
-
   computed: {},
-
   methods: {
-      
       getPaperAnswer(params) {
         ajaxPaperAnswerObj.queryPaperAnswer(params).then((result) => {
                 console.log(result)
             }).catch((err) => {
-                
+
             });
       }
   },

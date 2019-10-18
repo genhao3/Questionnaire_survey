@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-    <questionOptions operation="edit"></questionOptions>
+    <questionOptions operation="edit" :isCreate="true"></questionOptions>
 </template>
 
 <script>

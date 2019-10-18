@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <el-table-column label="操作">
     <template slot-scope="scope" v-if="btnType === 'myQues'">
@@ -15,7 +14,7 @@
 </template>
 
 <script>
-import ajaxAllPaperObj from "@/api/questionPaper";
+import ajaxAllPaperObj from "../../api/questionPaper";
 export default {
   name:'tableBtn',
   props: {

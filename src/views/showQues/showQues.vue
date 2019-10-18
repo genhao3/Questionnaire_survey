@@ -2,7 +2,7 @@
 <template>
   <div>
       <h1>问卷查看</h1>
-       <questionList :questionList="questionData"></questionList> 
+       <questionList :questionList="questionData" ></questionList>
   </div>
 </template>
 

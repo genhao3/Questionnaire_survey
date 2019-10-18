@@ -21,7 +21,7 @@
                     <el-button type="primary"  @click="addPaper">提交</el-button>
                 </el-form-item>
                 <el-form-item>
-                    <questionList :questionList="quesList"></questionList>
+                    <questionList :questionList="quesList" :isCreate="isCreate"></questionList>
                 </el-form-item>
        </el-form>
         <!--单选题弹框-->
@@ -96,14 +96,15 @@
 </template>
 <script>
 
-import questionList from '@/component/questionList/questionList'
-import allPaperObj from "@/api/questionPaper";
+import questionList from '../../component/questionList/questionList'
+import allPaperObj from "../../api/questionPaper";
 
 
 export default {
     name: "addQues",
     props: {
-        operation:String
+            operation: {type:String},
+            isCreate:{type:Boolean}
     },
     data(){
         return{
@@ -168,6 +169,10 @@ export default {
        this.textareaVisible = true
        this.addTextareaForm.type = type
     },
+     addRadioItem: function(index) {
+         //添加多选题选项
+         this.addRadioForm.options.push("选项");
+     },
     delRadioItem: function(index) {
       //删除单选题选项
       if (this.addRadioForm.options.length === 1) return false;
@@ -218,7 +223,12 @@ export default {
              .then(result => console.log(result))
              .catch(err => {
                  console.log(err);
-             }) 
+             })
+         this.quesList= {             // 清空下缓存问卷总题目
+                 title:'',
+                 instructions:'',
+                 data:[]
+         }
      },
      getSinglePaper(params) {
          allPaperObj.querySinglePaper(params).then((result) => {
@@ -251,7 +261,7 @@ export default {
      }
   },
   created() {
-      if(this.operation === 'edit') {  
+      if(this.operation === 'edit') {
           this.getSinglePaper({paperCode:this.$route.params.paperCode})
       }
   },
