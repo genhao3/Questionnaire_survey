@@ -19,7 +19,7 @@
         </el-menu>
       </el-col>
       <el-col class="layout-right" :span="18">
-        <keep-alive :include="['addQues']">
+        <keep-alive :include="['addQues','myQuestionnaire']">
         <router-view ></router-view>
         </keep-alive>
       </el-col>

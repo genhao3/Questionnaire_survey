@@ -30,11 +30,7 @@ export const router = new Router({
                     name:'myQuestionnaire',
                     component:() => import('../views/myQuestionnaire/myQuestionnaire')
                 },
-                {
-                    path:'/showQues/:paperCode',
-                    name:'showQues',
-                    component:() => import('../views/showQues/showQues')
-                },
+               
                 {
                     path:'/showQuesAnswer/:paperCode/:title',
                     name:'showQuesAnswer',
@@ -42,6 +38,11 @@ export const router = new Router({
                 },
                 
             ]
-        }
+        },
+        {
+            path:'/showQues/:paperCode',
+            name:'showQues',
+            component:() => import('../views/showQues/showQues')
+        },
     ]
 })

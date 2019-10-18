@@ -102,7 +102,7 @@ import allPaperObj from "../../api/questionPaper";
 
 
 export default {
-    name: "addQues",
+    name: "questionOptions",
     props: {
             operation: {type:String},
             isCreate:{type:Boolean}
@@ -221,9 +221,9 @@ export default {
     },
      addPaper () {
           if(this.operation === 'create') {
-              allPaperObj.addPaper()
+              allPaperObj.addPaper(this.getQuesAllParams())
              .then(result => {
-                 console.log(result)
+                 
                  this.$notify({
                     title: '成功',
                     message: '创建问卷成功',

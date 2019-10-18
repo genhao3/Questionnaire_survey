@@ -15,6 +15,7 @@
 
 <script>
 import ajaxAllPaperObj from "../../api/questionPaper";
+import Bus from "@/utils/eventBus";
 export default {
   name:'tableBtn',
   props: {
@@ -31,34 +32,38 @@ export default {
   methods: {
     handleView(index, row) {
       //点击查看
-      console.log(index, row);
-      this.$router.push({name:"showQues",params: {paperCode:row.code}})
+      //this.$router.push({name:"showQues",params: {paperCode:row.code}})
+      const routerData = this.$router.resolve({
+        name:'showQues',
+        params: {paperCode:row.code}
+      })
+      window.open(routerData.href,'_blank')
     },
     handleViewAnswer(index, row) {
       //点击查看答卷
-      console.log(index, row);
       this.$router.push({name:"showQuesAnswer",params: {paperCode:row.code,title:row.name}})
     },
     handleDelete(index, row) {
       //点击删除
-      ajaxAllPaperObj
+      Bus.$emit('handleDeletePaper',row.code)
+     /*  ajaxAllPaperObj
         .deletePaper(row.code)
         .then(result => {
-          console.log(result);
+          
           this.$notify({
             title: '成功',
             message: '删除问卷成功',
             type: 'success'
           });
-          return ajaxAllPaperObj.queryAllPaper({pageNo:1,pageSize:20})
+          return ajaxAllPaperObj.queryAllPaper({pageNo:1,pageSize:1})
         })
         .then(result => {
-          this.$emit('updatePaperTable',result.data.results)
-          console.log(result);
+          this.$emit('updatePaperTable',result.data.results,result.data.total)
+          ;
         })
         .catch(err => {
           console.log(err);
-        });
+        }); */
     },
     handleRevert(index,row) {//点击还原
         console.log(index,row);

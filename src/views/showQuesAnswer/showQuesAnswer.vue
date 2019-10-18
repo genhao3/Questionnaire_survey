@@ -16,6 +16,7 @@
     </template>
     </el-table-column>
   </el-table>
+  <pagination :total="total" :page.sync="pageQuery.pageNo" @getNewQues="getNewQues"></pagination>
         <el-dialog title="答卷详情" :visible.sync="dialogTableVisible">
             <p v-for="(item, index) in answerDetail" :key="index">第{{index+1}}题 --- {{item.answers}}</p>
         </el-dialog>
@@ -24,28 +25,32 @@
 
 <script>
 import ajaxPaperAnswerObj from '../../api/paperAnswer'
+import pagination from '../../component/pagination/pagination'
 export default {
   name:'showQuesAnswer',
   data () {
     return {
-        params: {
-            pageNo:"1",
-            pageSize:"10",
+        pageQuery: {
+            pageNo:1,
+            pageSize:2,
             paperCode:''
         },
+        total:1,
         ansTable:[],
         title:'',
-        answerDetail:[123,456],//答卷详情
+        answerDetail:[],//答卷详情
         dialogTableVisible:false//控制单个用户选项弹框
     };
   },
-  components: {},
+  components: {
+    pagination
+  },
   computed: {},
   methods: {
-      getPaperAnswer(params) {
-        ajaxPaperAnswerObj.queryPaperAnswer(params).then((result) => {
-                console.log(result)
+      getPaperAnswer() {
+        ajaxPaperAnswerObj.queryPaperAnswer(this.pageQuery).then((result) => {
                 this.ansTable = result.data.results
+                this.total = result.data.total
             }).catch((err) => {
                 console.log(err);
             });
@@ -53,12 +58,15 @@ export default {
       handleView(index,row) {
         this.dialogTableVisible = true
         this.answerDetail = JSON.parse(row.ansJson).data
+      },
+      getNewQues() {
+        this.getPaperAnswer()
       }
   },
   created() {
-      this.params.paperCode = this.$route.params.paperCode,
-      this.title = this.$route.params.title,
-      this.getPaperAnswer(this.params)
+      this.pageQuery.paperCode = this.$route.params.paperCode
+      this.title = this.$route.params.title
+      this.getPaperAnswer()
   },
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="allPaper" border style="width: 100%">
+  <el-table :data="paperData" border style="width: 100%">
     <el-table-column prop="id" label="ID" width="180"></el-table-column>
     <el-table-column prop="name" label="问卷" width="180"></el-table-column>
     <el-table-column prop="status" label="状态" width="100">
@@ -7,7 +7,7 @@
         <el-tag :type="renderStatusTag(scope.row.status)" disable-transitions>{{scope.row.status | changeStatusTag }}</el-tag>
       </template>
     </el-table-column>
-    <tableBtn :btnType="tableType" @updatePaperTable="changeAllPaper" ></tableBtn>
+    <tableBtn :btnType="tableType"  ></tableBtn>
   </el-table>
 </template>
 
@@ -20,41 +20,14 @@ export default {
       tableBtn
   },
   props: {
-      tableType:String
+      tableType:String,
+      paperData:Array,
   },
   data() {
     return {
-      allPaper: [
-      ]
     };
   },
   methods: {
-    changeAllPaper(paper) {
-      //更新表格
-      this.allPaper = paper
-    },
-    getAllPaper() {
-      //获取当前未删除的问卷
-      ajaxAllPaperObj.queryAllPaper({ pageNo: "1", pageSize: "10" })
-        .then(result => {
-          console.log(result);
-          this.changeAllPaper(result.data.results)
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-        getAllDeletePaper() {
-      //获取当前删除的问卷
-      ajaxAllPaperObj.queryAllDeletePaper({ pageNo: "1", pageSize: "10" })
-        .then(result => {
-          console.log(result);
-          this.allPaper = result.data.results;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
     renderStatusTag(status) {
       let result;
       switch (status) {
@@ -92,14 +65,6 @@ export default {
       }
       return result;
     }
-  },
-  mounted:function() {
-      if(this.tableType === 'myQues') {
-        this.getAllPaper();
-      } else {
-          this.getAllDeletePaper()
-      }
-
   },
 
 };

@@ -50,7 +50,7 @@ export default {
         useTime: new Date().getTime() - this.openTime
       }
       ajaxPaperAnswerObj.postAddAnswer(paperAnswerDto).then((result) => {
-        console.log(result)
+        
         this.openTime = new Date().getTime()
         this.$notify({
           title: '成功',

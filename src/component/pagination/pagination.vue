@@ -5,7 +5,7 @@
                 layout="prev, pager, next"
                 :total="total"
                 @current-change="getCurPage"
-                page-size="20"
+                :page-size="2"
                 :current-page.sync="currentPage"
         >
         </el-pagination>

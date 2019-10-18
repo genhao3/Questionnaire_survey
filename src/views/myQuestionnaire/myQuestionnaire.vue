@@ -1,6 +1,6 @@
 <template>
     <div style="width:100%;position: relative;">
-        <questionTable tableType="myQues"></questionTable>
+        <questionTable tableType="myQues" :paperData="allPaper"></questionTable>
         <pagination :total="total" :page.sync="pageQuery.pageNo" @getNewQues="getNewQues"></pagination>
     </div>
 </template>
@@ -9,30 +9,63 @@
 import questionTable from '../../component/questionTable/questionTable'
 import allPaperObj from "../../api/questionPaper";
 import pagination from '../../component/pagination/pagination'
+import Bus from "@/utils/eventBus";
 export default {
+  name:'myQuestionnaire',
   data () {
     return {
         allPaper:[],
         total:1,
+        first:true,//第一次进入页面
         pageQuery:{
             pageNo: 1,
-            pageSize: 20
+            pageSize: 2
         }
     };
   },
-
+  computed: {
+    pagesSize() {
+      //当前页面条数
+      return this.allPaper.length;
+    }
+  },
   methods: {
     getAllPaper() {
       //获取当前未删除的问卷
       allPaperObj.queryAllPaper(this.pageQuery)
         .then(result => {
-          console.log(result);
           this.allPaper = result.data.results;
           this.total = result.data.total
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    handleDeletePaper(code) {
+      //点击删除问卷
+         allPaperObj
+        .deletePaper(code)
+        .then(result => {
+          if(result.code === 0) {
+            this.$notify({
+            title: '成功',
+            message: '删除问卷成功',
+            type: 'success'
+          });
+          if(this.pagesSize-1 === 0 && this.pageQuery.pageNo >1 )
+            this.pageQuery.pageNo -= 1
+            return allPaperObj.queryAllPaper(this.pageQuery)
+          }
+        })
+        .then(result => {
+          
+          this.allPaper = result.data.results
+          this.total = result.data.total
+          
+        })
+        .catch(err => {
+          console.log(err);
+        });  
     },
     renderStatusTag(status) {
       let result;
@@ -51,11 +84,7 @@ export default {
       }
       return result;
     },
-    handleEdit(index,row) {
-        console.log(index,row);
-    },
     getNewQues:function () {
-
         this.getAllPaper()
     }
   },
@@ -83,7 +112,21 @@ export default {
         questionTable,
         pagination
     },
-    computed: {},
+    created() {
+      this.getAllPaper()
+      Bus.$on('handleDeletePaper',this.handleDeletePaper)
+    },
+    activated(){
+      if(!this.first ) {
+        this.getAllPaper()   
+      } else {
+        this.first = false
+      }
+    },
+    beforeDestroy(){
+      Bus.$off('handleDeletePaper',this.handleDeletePaper)
+    }
+
 }
 
 </script>
