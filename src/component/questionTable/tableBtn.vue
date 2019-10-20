@@ -46,10 +46,11 @@ export default {
     handleDelete(index, row) {
       //点击删除
       Bus.$emit('handleDeletePaper',row.code)
+        console.log(row.code)
      /*  ajaxAllPaperObj
         .deletePaper(row.code)
         .then(result => {
-          
+
           this.$notify({
             title: '成功',
             message: '删除问卷成功',
