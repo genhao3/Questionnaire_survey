@@ -17,5 +17,21 @@ export default {
             data
           })
     },
+    //删除一份答卷
+    deleteSingleAnswerPaper(id) {
+        return request({
+            url: '/deleteSingleAnswerPaper',
+            method: 'delete',
+            params:{id}
+          })
+    },
+    //删除一份问卷所有答卷
+    deleteAllAnswerPaper(paperCode) {
+        return request({
+            url: '/deleteAllAnswerPaper',
+            method: 'delete',
+            params:{paperCode}
+        })
+    }
     
 }

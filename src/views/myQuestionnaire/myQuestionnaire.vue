@@ -16,10 +16,9 @@ export default {
     return {
         allPaper:[],
         total:1,
-        first:true,//第一次进入页面
         pageQuery:{
             pageNo: 1,
-            pageSize: 2
+            pageSize: 20
         }
     };
   },
@@ -113,15 +112,10 @@ export default {
         pagination
     },
     created() {
-      this.getAllPaper()
       Bus.$on('handleDeletePaper',this.handleDeletePaper)
     },
     activated(){
-      if(!this.first ) {
-        this.getAllPaper()   
-      } else {
-        this.first = false
-      }
+      this.getAllPaper()
     },
     beforeDestroy(){
       Bus.$off('handleDeletePaper',this.handleDeletePaper)
