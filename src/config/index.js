@@ -2,7 +2,7 @@
 const modeUrlObj = {
   // 生产环境
   'production': {
-    baseURL: 'http://xxxx:9091/pro/',
+    baseURL: 'http://182.61.26.241:8081/api',
     authBaseURL: ''
   },
   // 开发环境

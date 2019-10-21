@@ -1,6 +1,5 @@
 <template>
     <div style="position: relative">
-        {{questionList}}
         <el-row>
             <el-col :span="22">
         <el-form  label-width="80px">
