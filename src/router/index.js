@@ -30,19 +30,28 @@ export const router = new Router({
                     name:'myQuestionnaire',
                     component:() => import('../views/myQuestionnaire/myQuestionnaire')
                 },
-               
+
                 {
                     path:'/showQuesAnswer/:paperCode/:title',
                     name:'showQuesAnswer',
                     component:() => import('../views/showQuesAnswer/showQuesAnswer')
                 },
-                
+
             ]
+        },
+        {
+          path:'/answerSuccess',
+          name:'answerSuccess',
+          component:()=>import('../views/answerSuccess')
         },
         {
             path:'/showQues/:paperCode',
             name:'showQues',
             component:() => import('../views/showQues/showQues')
         },
+        {
+            path:'*',
+            component:()=>import('../views/404page')
+        }
     ]
 })

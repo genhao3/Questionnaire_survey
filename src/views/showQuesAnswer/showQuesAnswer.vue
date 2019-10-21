@@ -7,7 +7,7 @@
     <el-table-column prop="id" label="ID" width="50"></el-table-column>
     <el-table-column prop="ipAddr" label="用户IP" width="180"></el-table-column>
     <el-table-column prop="createTime" label="提交时间" width="180"></el-table-column>
-    <el-table-column prop="useTime" label="答题用时" width="80"></el-table-column>
+    <el-table-column prop="useTime" label="答题用时/s" width="90"></el-table-column>
     <el-table-column prop="userCode" label="用户Code" width="180"></el-table-column>
     <el-table-column prop="sourceDetail" label="来源设备" ></el-table-column>
     <el-table-column prop="status" label="操作">
@@ -57,6 +57,7 @@ export default {
         ajaxPaperAnswerObj.queryPaperAnswer(this.pageQuery).then((result) => {
                 this.ansTable = result.data.results
                 this.total = result.data.total
+                console.log(result)
             }).catch((err) => {
                 console.log(err);
             });
@@ -96,7 +97,7 @@ export default {
             message: '删除所有答卷成功',
             type: 'success'
           });
-          
+
             this.pageQuery= {
             pageNo:1,
             pageSize:20,

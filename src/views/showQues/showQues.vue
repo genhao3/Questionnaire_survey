@@ -47,16 +47,17 @@ export default {
         ansJson:this.getAnsJson(),
         paperCode:this.$route.params.paperCode,
         userCode:'',
-        useTime: new Date().getTime() - this.openTime
+        useTime: Math.floor((new Date().getTime() - this.openTime)/10)/100
       }
       ajaxPaperAnswerObj.postAddAnswer(paperAnswerDto).then((result) => {
-        
+
         this.openTime = new Date().getTime()
         this.$notify({
           title: '成功',
           message: '成功提交',
           type: 'success'
         });
+        this.$router.replace({path:'/answerSuccess'})
       }).catch((err) => {
         console.log(err);
       });
