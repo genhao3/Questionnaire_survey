@@ -6,7 +6,7 @@
         <el-menu
           default-active="1"
           class="el-menu-vertical-demo"
-          background-color="#545c64"
+          background-color="#0095ff"
           ext-color="#fff"
           active-text-color="#ffd04b"
         >
@@ -73,7 +73,7 @@ export default {
   color: #f5f7f9;
   text-align: center;
   font-size: 24px;
-  background-color: #545c64;
+  background-color: #0095ff;
 }
 
 .layout-right {
